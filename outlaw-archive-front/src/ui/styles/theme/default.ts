@@ -21,14 +21,18 @@ export const defaultTheme = createTheme({
     },
     error: {
       main: "#E25858", // --danger
+      light: "#b7410e",
     },
     background: {
-      default: "#1A1A1A", // --gray-100 (ou outra cor de fundo desejada)
+      default: "#F2F2F2", // --gray-100 (ou outra cor de fundo desejada)
       paper: "#FFFFFF", // Cor do fundo dos componentes Paper
     },
     text: {
-      primary: "#0D0D0D", //--gray-700, ou outra cor de texto desejada
+      primary: "#F2F2F2", //--gray-700, ou outra cor de texto desejada
       secondary: "#333333", //--gray-400, ou outra cor de texto secundaria
+    },
+    success: {
+      main: "#0d730d",
     },
   },
   // Você pode adicionar mais personalizações aqui, como tipografia, espaçamento, etc.
