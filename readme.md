@@ -28,30 +28,66 @@ Wanted Outlaws é um sistema web completo para gerenciar informações sobre ind
 - **Docker:** Para criar um ambiente de desenvolvimento isolado e consistente.
 - **Docker Compose:** Para gerenciar e orquestrar os containers do backend, frontend e banco de dados.
 
-## Estrutura do Projeto
+## Como Utilizar
 
-```
-/wanted-outlaws
-├── backend/                 # Código do backend em NestJS
-│   ├── src/
-│   │   ├── database/        # Configuração do banco de dados (TypeORM)
-│   │   ├── entities/         # Módulos da aplicação (procurados, etc.)
-│   │   ├── main.ts          # Ponto de entrada da API
-│   ├── package.json         # Dependências do backend
-│   ├── Dockerfile           # Dockerfile para o backend
-│   └── .env                 # Variáveis de ambiente do backend
-│
-├── frontend/                # Código do frontend em React
-│   ├── src/
-│   │   ├── components/      # Componentes da aplicação (listagem, modal, etc.)
-│   │   ├── pages/           # Páginas do sistema (listagem de procurados)
-│   │   ├── theme.ts         # Tema personalizado do Material UI
-│   ├── package.json         # Dependências do frontend
-│   ├── Dockerfile           # Dockerfile para o frontend
-│
-├── docker-compose.yml       # Configuração dos containers Docker
-└── README.md                # Documentação do projeto
-```
+### Pré-requisitos
+
+Antes de começar, certifique-se de que você tem as seguintes ferramentas instaladas na sua máquina:
+
+- **Docker:** Para conteinerização e orquestração dos serviços.
+- **Node.js:** Para executar o backend (NestJS) e o frontend (React).
+- **npm ou Yarn:** Gerenciador de pacotes para instalar as dependências.
+- **Docker Compose CLI:** Para orquestrar os containers Docker.
+
+### Passos para Execução
+
+1.  **Clone o Repositório:**
+
+    - Clone o repositório do projeto para a sua máquina local.
+
+2.  **Inicie o Banco de Dados (PostgreSQL):**
+
+    - Na raiz do projeto, execute o seguinte comando para iniciar o container do PostgreSQL:
+
+      ```bash
+      docker-compose up -d postgres
+      ```
+
+    - Este comando iniciará o banco de dados em segundo plano.
+
+3.  **Inicie o Backend (NestJS):**
+
+    - Após o banco de dados estar em execução, inicie o container do backend:
+
+      ```bash
+      docker-compose up -d backend
+      ```
+
+    - Este comando iniciará a API do backend em segundo plano.
+
+4.  **Inicie o Frontend (React):**
+
+    - Com o backend em execução, inicie o container do frontend:
+
+      ```bash
+      docker-compose up -d frontend
+      ```
+
+    - Este comando iniciará a aplicação frontend em segundo plano.
+
+5.  **Acesse a Aplicação:**
+    - Após todos os containers estarem em execução, você pode acessar a aplicação no seu navegador:
+      - Frontend: Acesse `http://localhost:3000`
+      - Backend: Acesse `http://localhost:3333`
+
+### Observações
+
+- O comando `docker-compose up -d` executa os containers em modo "detached" (em segundo plano).
+- Para parar os containers, execute `docker-compose down` na raiz do projeto.
+- Para verificar os logs dos containers, use `docker logs <nome_do_container>`.
+- Certifique-se de que as variáveis de ambiente estão configuradas corretamente nos arquivos `.env` e `docker-compose.yml`.
+
+Com estes passos, você terá o sistema Wanted Outlaws em execução na sua máquina local.
 
 ## Funcionalidades Principais
 
@@ -63,7 +99,3 @@ Wanted Outlaws é um sistema web completo para gerenciar informações sobre ind
 - ✅ **Aplicação de temas e estilização inspirada no Velho Oeste:** Design temático para uma experiência imersiva.
 - ✅ **Integração com PostgreSQL via TypeORM:** Facilita a interação com o banco de dados.
 - ✅ **Deployment facilitado com Docker:** Conteinerização para implantação simplificada.
-
-## Licença
-
-Este projeto está sob a licença MIT.
