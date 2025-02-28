@@ -1,0 +1,16 @@
+services: 
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5435:5432'
+    volumes:
+      - ./outlaw-archive-back/postgres_data:/var/lib/postgresql/data
+      - ./outlaw-archive-back/create-db.sql:/docker-entrypoint-initdb.d/create_database.sql
