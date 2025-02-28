@@ -1,4 +1,4 @@
-import { Checkbox, Chip } from "@mui/material";
+import { Checkbox, Chip, Typography } from "@mui/material";
 import { IOutlawInformations } from "../../../../../data/types/interfaces/GeneralInterfaces";
 import { StyledContentCell } from "../../styles";
 import { useContext } from "react";
@@ -45,7 +45,7 @@ export function RowContent({ row, isEditing = false, onEditClick }: IRowContentP
             defaultValue={row.wanted_name}
           />
         ) : (
-          row.wanted_name
+          <Typography >{row.wanted_name}</Typography>
         )}
       </StyledContentCell>
       <StyledContentCell>

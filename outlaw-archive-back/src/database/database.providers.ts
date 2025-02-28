@@ -7,11 +7,12 @@ export const databaseProviders = [
       const dataSource = new DataSource({
         type: 'postgres',
         host: process.env.DATABASE_HOST,
-        port: Number(process.env.DATABASE_PORT),
-        username: process.env.DATABASE_USER ,
-        password: String(process.env.DATABASE_PASSWORD),
-        database: process.env.DATABASE_NAME,
+        port: 5435,
+        username: 'postgres',
+        password: 'postgres',
+        database: 'postgres',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        migrations: ['dist/migrations/*.js'],
       });
 
       return dataSource.initialize();

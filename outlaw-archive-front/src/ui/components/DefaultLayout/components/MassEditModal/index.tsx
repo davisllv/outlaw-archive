@@ -120,7 +120,8 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ open, onClose }) => {
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    width: 1200,
+                    width: '90%',
+                    maxWidth: 1200,
                     bgcolor: 'background.paper',
                     boxShadow: 24,
                     borderRadius: "12px",
@@ -132,6 +133,7 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ open, onClose }) => {
                 </Typography>
                 <Paper
                     style={{
+                        maxHeight: "60vh",
                         height: "60vh",
                         width: "100%",
                     }}
@@ -143,8 +145,6 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ open, onClose }) => {
                         itemContent={(_, row) => (
                             <RowContentModal
                                 row={row}
-                            // isEditing={editStates[row.id] ?? false}
-                            // onEditClick={handleEditClick}
                             />
                         )}
                     />
@@ -152,11 +152,12 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ open, onClose }) => {
                 <div style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    alignItems: "center"
+                    alignItems: "center",
+                    flexWrap: 'wrap',
                 }}>
                     <FormControl sx={{
                         display: "flex",
-                        flexDirection: "row",
+                        flexDirection: { xs: 'column', sm: 'row' },
                         alignItems: "center",
                         gap: "1rem",
                         marginTop: "1rem"
