@@ -6,13 +6,17 @@ interface IInputTextFieldProps extends FieldValues {
   name: string;
   control: any;
   defaultValue: string;
+  error: boolean;
+  helperText?: string;
 }
 
 export function InputTextField({
   name,
   control,
   defaultValue,
-  rest,
+  error = false,
+  helperText = undefined,
+  ...rest
 }: IInputTextFieldProps) {
   return (
     <Controller
@@ -22,8 +26,10 @@ export function InputTextField({
       {...rest}
       render={({ field }) => (
         <TextField
-          id="standard-basic"
+          id={error ? "outlined-error" : "standard-basic"}
           variant="standard"
+          error={error}
+          helperText={helperText}
           onChange={field.onChange}
           defaultValue={defaultValue}
         />

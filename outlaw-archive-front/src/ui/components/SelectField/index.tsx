@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { MenuItem, Select } from "@mui/material";
+import { MenuItem, Select, useTheme } from "@mui/material";
 import { Controller, FieldValues } from "react-hook-form";
 
 interface ISelectFieldProps extends FieldValues {
@@ -19,6 +19,7 @@ export function SelectField({
   options,
   rest,
 }: ISelectFieldProps) {
+  const theme = useTheme()
   return (
     <Controller
       name={name}
@@ -27,21 +28,21 @@ export function SelectField({
       {...rest}
       render={({ field }) => (
         <Select
-          labelId="status-select-label"
-          id="status-select"
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
           defaultValue={defaultValue}
           onChange={field.onChange}
           sx={{
-            color: "#F2F2F2",
+            color: theme.palette.text.primary,
             "& .MuiSvgIcon-root": {
-              color: "#F2F2F2",
+              color: theme.palette.text.primary,
             },
           }}
           MenuProps={{
             PaperProps: {
               sx: {
-                backgroundColor: "#333333",
-                color: "#F2F2F2",
+                backgroundColor: theme.palette.grey[500],
+                color: theme.palette.text.primary,
               },
             },
           }}

@@ -1,38 +1,43 @@
 import Paper from "@mui/material/Paper";
 import { TableVirtuoso } from "react-virtuoso";
+import { RowContent } from "./components/RowContent";
 import { VirtuosoTableComponents } from "../TableComponents";
 import {
   IColumnData,
   IOutlawInformations,
 } from "../../../data/types/interfaces/GeneralInterfaces";
-import { RowContent } from "./components/RowContent";
-import { data } from "../../../data/data";
 import { HeaderContent } from "./components/HeaderContent";
 import { useContext } from "react";
 import { useFormContext } from "react-hook-form";
-import { ToogleSelectionContext } from "../../../data/contexts/ToogleSelection/ToogleSelectionContext";
+import { OutlawArchiveContext } from "../../../data/contexts/OutlawArchive/OutlawArchiveContext";
+
 
 const columns: IColumnData[] = [
   {
+    width: 30,
+    label: "Checkbox",
+    dataKey: "checkbox",
+  },
+  {
     width: 100,
     label: "Nome Procurado",
-    dataKey: "wantedName",
+    dataKey: "wanted_name",
   },
   {
     width: 60,
     label: "Status",
-    dataKey: "wantedStatus",
+    dataKey: "wanted_status",
   },
   {
     width: 80,
     label: "Valor Recompensa",
-    dataKey: "bountyValue",
+    dataKey: "bounty_value",
     numeric: true,
   },
   {
     width: 100,
     label: "Vivo ou Morto",
-    dataKey: "dearOrAlive",
+    dataKey: "dead_or_alive",
   },
   {
     width: 110,
@@ -48,12 +53,12 @@ const columns: IColumnData[] = [
 
 export default function ReactVirtualizedTable() {
   const { reset } = useFormContext();
-  const { editStates, changeEditState } = useContext(ToogleSelectionContext);
-
+  const { editStates, changeEditState, data } = useContext(OutlawArchiveContext);
   const handleEditClick = (row: IOutlawInformations) => {
     if (!(row.id in editStates)) {
       reset({
         ...row,
+        bounty_value: Number(row.bounty_value)
       });
       changeEditState(row.id);
     }
@@ -63,8 +68,6 @@ export default function ReactVirtualizedTable() {
       style={{
         height: "80vh",
         width: "100%",
-        backgroundColor: "#1A1A1A",
-        borderRadius: "32px",
       }}
     >
       <TableVirtuoso
