@@ -13,28 +13,35 @@ export class WantedService {
 
   // Retorna todos os dados (com cache opcional)
   async findAll(): Promise<Wanted[]> {
-    return this.wantedRepository.find();
+    return this.wantedRepository.find({
+      order: {
+        id: 'ASC'
+      }
+    });
   }
 
   // Atualiza um único procurado
   async updateOne(
     id: number,
     updateDto: UpdateWantedDto,
-  ): Promise<Wanted | null> {
+  ): Promise<void> {
     await this.wantedRepository.update(id, updateDto);
-    return await this.wantedRepository.findOne({ where: { id } });
   }
 
   // Atualiza vários procurados
-  async bulkUpdate(dto: BulkUpdateWantedDto): Promise<Wanted[]> {
-    const { ids } = dto;
+  async bulkUpdate(dto: BulkUpdateWantedDto): Promise<void> {
+    const { ids, bulk_values } = dto;
+
+ 
     await this.wantedRepository
       .createQueryBuilder()
       .update(Wanted)
-      .set({})
+      .set({
+        wanted_status: bulk_values.wantedStatus,
+        dead_or_alive: bulk_values.deadOrAlive
+      })
       .whereInIds(ids)
       .execute();
 
-    return this.wantedRepository.findByIds(ids);
   }
 }

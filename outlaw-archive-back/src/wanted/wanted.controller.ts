@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Param, Body } from '@nestjs/common';
+import { Controller, Get, Patch, Param, Body, Put } from '@nestjs/common';
 import { WantedService } from './wanted.service';
 import { UpdateWantedDto } from './dto/UpdatedWantedDTO';
 import { BulkUpdateWantedDto } from './dto/BulkUpdateWantedDTO';
@@ -17,7 +17,7 @@ export class WantedController {
     return this.wantedService.updateOne(id, updateDto);
   }
 
-  @Patch()
+  @Put()
   bulkUpdate(@Body() dto: BulkUpdateWantedDto) {
     return this.wantedService.bulkUpdate(dto);
   }
