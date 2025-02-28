@@ -34,7 +34,7 @@ Wanted Outlaws é um sistema web completo para gerenciar informações sobre ind
 
 Antes de começar, certifique-se de que você tem as seguintes ferramentas instaladas na sua máquina:
 
-- **Docker:** Para conteinerização e orquestração dos serviços.
+- **Docker-Desktop:** Para conteinerização e orquestração dos serviços.
 - **Node.js:** Para executar o backend (NestJS) e o frontend (React).
 - **npm ou Yarn:** Gerenciador de pacotes para instalar as dependências.
 - **Docker Compose CLI:** Para orquestrar os containers Docker.
