@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import AxiosFactory from "./axiosFactory";
 
 const BASE_URL = "http://localhost:3333"; 
@@ -12,6 +13,11 @@ const apiService = {
 
   post: async <T>(url: string, data?: any, config?: any): Promise<T> => {
     const response = await axiosInstance.post<T>(url, data, config);
+    return response.data;
+  },
+
+  patch: async <T>(url: string, data?: any, config?: any): Promise<T> => {
+    const response = await axiosInstance.patch<T>(url, data, config);
     return response.data;
   },
 

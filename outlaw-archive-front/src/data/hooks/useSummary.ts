@@ -1,11 +1,12 @@
-import { useMemo } from "react";
-import { data } from "../data";
+import { useContext, useMemo } from "react";
+import { OutlawArchiveContext } from "../contexts/OutlawArchive/OutlawArchiveContext";
 
 export function useSummary() {
+  const { data } = useContext(OutlawArchiveContext);
   const summary = useMemo(() => {
-    return data.reduce(
+    return data?.reduce(
       (acc, transactions) => {
-        if (transactions.wantedStatus === "Capturado") {
+        if (transactions.wanted_status === "Capturado") {
           acc.captured++;
         } else {
           acc.wanted++;
@@ -18,7 +19,7 @@ export function useSummary() {
         wanted: 0,
       }
     );
-  }, []);
+  }, [data]);
 
   return summary;
 }
