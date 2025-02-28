@@ -16,7 +16,7 @@ export function DefaultGlobalStyles() {
           background: theme.palette.background.default,
         },
         "body, input, textarea, button": {
-          fontFamily: "Roboto, sans-serif",
+          fontFamily: "Rye, sans-serif",
           fontWeight: 400,
           lineHeight: 1.3,
           fontSize: "1rem",
