@@ -1,16 +1,45 @@
-services: 
+services:
   postgres:
     image: postgres
     restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
     logging:
       options:
         max-size: 10m
         max-file: "3"
     ports:
-      - '5435:5432'
+      - "5435:5432"
     volumes:
       - ./outlaw-archive-back/postgres_data:/var/lib/postgresql/data
-      - ./outlaw-archive-back/create-db.sql:/docker-entrypoint-initdb.d/create_database.sql
+      - ./outlaw-archive-back/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/
+
+  backend:
+    build: ./outlaw-archive-back
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./outlaw-archive-back:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+
+  frontend:
+    build: ./outlaw-archive-front
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./outlaw-archive-front:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=development
+
+volumes:
+  postgres_data:
