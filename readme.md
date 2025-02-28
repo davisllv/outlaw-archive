@@ -2,7 +2,7 @@
 
 ## Sobre o Projeto
 
-Wanted Outlaws é um sistema web completo para gerenciar informações sobre indivíduos procurados, inspirado no Velho Oeste. A aplicação oferece funcionalidades para cadastrar, listar, buscar e atualizar dados de criminosos, com um design temático e uma interface moderna. O sistema inclui uma listagem com scroll infinito, ações em massa com modal de pré-visualização, e ações individuais por item.
+Wanted Outlaws é um sistema web completo para gerenciar informações sobre indivíduos procurados, inspirado no Velho Oeste. A aplicação oferece funcionalidades para listar, atualizar dados de criminosos, com um design temático e uma interface moderna. O sistema inclui uma listagem com scroll infinito, ações em massa com modal de pré-visualização, e ações individuais por item.
 
 ## ️ Tecnologias Utilizadas
 
